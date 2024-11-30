@@ -10,9 +10,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-RUN chmod +x entrypoint.sh run.sh
+RUN chmod +x docker/entrypoint.sh docker/run.sh
 RUN mkdir -p /app/data
 EXPOSE 8000
 HEALTHCHECK --interval=60s --timeout=30s --start-period=15s --retries=3 CMD curl -f http://localhost:8000/script.js || exit 1
-ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["/app/run.sh"]
+ENTRYPOINT ["/app/docker/entrypoint.sh"]
+CMD ["/app/docker/run.sh"]
