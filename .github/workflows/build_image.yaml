@@ -32,7 +32,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           # TODO: figure out versioning
           tags: |
-            type=raw,value=latest,enable=${{ github.ref == format('ref/heads{0}'), 'docker-build') }}
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'docker-build') }}
             type=sha
       - name: Build and push Docker image
         id: push
